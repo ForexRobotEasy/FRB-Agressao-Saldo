@@ -1,0 +1,81 @@
+
+//+------------------------------------------------------------------+
+//|                                         FRB Agressao Saldo.mq5  |
+//|                                Expert Advisor for FRB Agressao Saldo|
+//|                                Developer - Forex Robot Easy Team  |
+//|                                Developer's site - forexroboteasy.com|
+//+------------------------------------------------------------------+
+#property strict
+
+//--- Input parameters
+input color HistogramColor=clrRed; // Customizable color for the histogram
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   //--- checking the availability of B3 volume data
+   if(!IsB3VolumeDataAvailable())
+   {
+      Print('B3 volume data is not available. Please contact your broker.');
+      return INIT_FAILED;
+   }
+   
+   //--- setting up the histogram
+   SetHistogramColor(HistogramColor);
+   
+   return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   //--- perform necessary trading functions based on the Aggression Balance
+   double aggressionBalance = CalculateAggressionBalance();
+   if(aggressionBalance > 0)
+   {
+      Buy();
+   }
+   else if(aggressionBalance < 0)
+   {
+      Sell();
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Helper functions                                                 |
+//+------------------------------------------------------------------+
+bool IsB3VolumeDataAvailable()
+{
+   //--- check if B3 volume data is available
+   return true; // Assuming B3 volume data is available
+}
+
+void SetHistogramColor(color color)
+{
+   //--- set the color of the histogram
+   // Implementation of setting histogram color
+}
+
+double CalculateAggressionBalance()
+{
+   //--- calculate the Aggression Balance based on B3 volume data
+   double aggressionBalance = 0.0; // Placeholder value for demonstration
+   // Implementation of calculating Aggression Balance
+   return aggressionBalance;
+}
+
+void Buy()
+{
+   //--- execute a buy trade
+   // Implementation of buy trade execution
+}
+
+void Sell()
+{
+   //--- execute a sell trade
+   // Implementation of sell trade execution
+}
